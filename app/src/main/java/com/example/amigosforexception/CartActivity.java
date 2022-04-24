@@ -30,6 +30,7 @@ import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
     RecyclerView cartView;
+    TextView total;
     Button proceed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class CartActivity extends AppCompatActivity {
         TextView next = v.findViewById(R.id.next_item);
         ImageView backArrow = v.findViewById(R.id.back_to_scanner);
         proceed = findViewById(R.id.proceed_to_pay);
+        total = findViewById(R.id.total_amount);
 //
 //        Recycler view
         cartView = findViewById(R.id.cartRecyclerView);
@@ -65,6 +67,11 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        int totalAmt = 0;
+        for(int i=0; i<data.size(); i++){
+            totalAmt += data.get(i).getPrice();
+        }
+        total.setText("Total Amount: ₹"+ String.valueOf(totalAmt));
 
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override

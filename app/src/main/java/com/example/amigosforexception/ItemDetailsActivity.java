@@ -167,7 +167,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
             if (d.get(i).getItemCode() != itemCode.getText().toString()) {
                 d.get(i).quantity += qty;
                 d.get(i).price = salePrice * d.get(i).getQuantity();
-                Toast.makeText(this, "Item present in list", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Item present in list", Toast.LENGTH_SHORT).show();
                 itemAdded = true;
                 break;
             }
