@@ -69,6 +69,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 displayDetails(response);
+                Log.i("apiGetData", response.toString());
                 apiResponse = response;
             }
         }, new Response.ErrorListener() {
@@ -120,8 +121,10 @@ public class ItemDetailsActivity extends AppCompatActivity {
                 int endPrice;
                 if(quantity.getText().toString() != null && quantity.getText().toString().length() != 0)
                     endPrice= Integer.parseInt(quantity.getText().toString()) * salePrice ;
-                else
+                else {
+                    Toast.makeText(ItemDetailsActivity.this, "Quantity should not be zero", Toast.LENGTH_SHORT).show();
                     endPrice = 0;
+                }
                 price.setText(String.valueOf(endPrice));
             }
 
@@ -135,13 +138,13 @@ public class ItemDetailsActivity extends AppCompatActivity {
             itemName.setText(res.get("itemName").toString());
             itemCode.setText(res.get("itemEanCode").toString());
             salePrice = Integer.parseInt(res.get("itemSalePrice").toString());
-            price.setText(String.valueOf(salePrice));
+            price.setText(String.valueOf("₹"+salePrice));
 
             } catch (JSONException e) { e.printStackTrace(); }
     }
 
     public void saveItemData(){
-        int itemPrice = Integer.parseInt(price.getText().toString());
+        int itemPrice = Integer.parseInt(price.getText().toString().substring(1));
         int qty;
         if(quantity.getText().toString() != null && quantity.getText().toString().length() != 0)
             qty = Integer.parseInt(quantity.getText().toString());

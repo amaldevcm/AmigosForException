@@ -76,7 +76,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void postData(List<CartItems> data){
-        Toast.makeText(this, "Posting data", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Posting data", Toast.LENGTH_SHORT).show();
         JSONObject customer = new JSONObject();
         try {
             customer.put("name", Global.getInstance().customerName);
@@ -116,7 +116,7 @@ public class CartActivity extends AppCompatActivity {
         JsonObjectRequest postRequest = new JsonObjectRequest(postUrl, apiPostData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(CartActivity.this, "Data posted", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(CartActivity.this, "Data posted", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CartActivity.this, QRGenerator.class);
                 try {
                     intent.putExtra("postBillId", response.get("postedBillId").toString());
@@ -128,7 +128,7 @@ public class CartActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(CartActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartActivity.this, "Error posting data to server", Toast.LENGTH_SHORT).show();
                 Log.i("post_error", error.toString());
             }
         });

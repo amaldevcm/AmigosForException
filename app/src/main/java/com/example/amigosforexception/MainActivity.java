@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         else {
-            cust_mobile.setBackgroundTintList(null);
+            cust_name.setBackgroundTintList(null);
             validName.setVisibility(View.INVISIBLE);
             if(valid)
                 return true;

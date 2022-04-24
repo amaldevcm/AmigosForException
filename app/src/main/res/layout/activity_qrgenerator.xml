@@ -10,7 +10,7 @@
     tools:context=".QRGenerator">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/qr_code"
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:srcCompat="@drawable/ic_launcher_foreground"

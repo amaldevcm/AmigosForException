@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,8 +31,17 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.name.setText(dataList.get(position).getItemName());
-        holder.price.setText(String.valueOf(dataList.get(position).getPrice()));
+        holder.price.setText("₹" + String.valueOf(dataList.get(position).getPrice()));
         holder.qty.setText(String.valueOf(dataList.get(position).getQuantity()));
+
+        int index = position;
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dataList.remove(index);
+                Global.getInstance().dataList.remove(index);
+            }
+        });
     }
 
     @Override
@@ -41,12 +51,14 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView name, qty, price;
+        ImageView delete;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.cart_item_name);
             qty = itemView.findViewById(R.id.cart_item_qty);
             price = itemView.findViewById(R.id.cart_item_price);
+            delete = itemView.findViewById(R.id.delete_item);
         }
     }
 }
